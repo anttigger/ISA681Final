@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" extends="struts-default" namespace="/action">
+
+		<!-- If no class attribute is specified the framework will assume success 
+			and render the result index.jsp -->
+
+		<interceptors>
+
+			<interceptor name="authenticationInterceptor" class="com.trivia.interceptors" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="loginAction" class="com.trivia.action.LoginAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">task</param>
+				<param name="namespace">/action</param>
+			</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<action name="logout" class="com.trivia.action.LogoutAction">
+			<result name="success" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/action</param>
+			</result>
+		</action>
+		<action name="task">
+			<interceptor-ref name="secureStack" />
+			<result>/task.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

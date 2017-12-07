@@ -1,0 +1,9 @@
+com/trivia/bean/User.class
+com/trivia/action/HashPassword.class
+com/trivia/action/LoginAction.class
+com/trivia/action/RegisterAction.class
+com/trivia/action/HistoryQuizAction.class
+com/trivia/action/LogoutAction.class
+com/trivia/bean/Database.class
+com/trivia/bean/Quiz.class
+com/trivia/interceptors/AuthenticationInterceptor.class
